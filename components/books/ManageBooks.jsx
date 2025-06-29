@@ -23,6 +23,7 @@ import {
   MoreVertical,
   AlertCircle
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const ManageBooks = () => {
   const [books, setBooks] = useState([]);
@@ -37,6 +38,7 @@ const ManageBooks = () => {
   const [bookToDelete, setBookToDelete] = useState(null);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
+  const navigate = useNavigate();
 
   // Mock data - in real app, these would come from API
   const publishers = [
@@ -349,7 +351,9 @@ const ManageBooks = () => {
               </span>{' '}
               of <span className="font-semibold text-gray-800">{filteredBooks.length}</span> books
             </div>
-            <button className="cursor-pointer inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-sm font-medium rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all duration-200 shadow-lg">
+            <button
+              onClick={()=>navigate('/add_new_book')}  
+              className="cursor-pointer inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-sm font-medium rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all duration-200 shadow-lg">
               <Plus className="w-4 h-4 mr-2" />
               Add New Book
             </button>

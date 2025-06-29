@@ -1,5 +1,7 @@
+
 import React, { useState } from 'react';
-import { BookOpen, Plus, User, Building, Tag, DollarSign, Hash, X, Check, Book, Bookmark, Pen, Feather, Upload, Image, Camera } from 'lucide-react';
+import { BookOpen, Plus, User, Building, Tag, DollarSign, Hash, X, Check, Book, Bookmark, Pen, Feather, Upload, Image, Camera, ArrowLeft } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const AddNewBook = () => {
   const [bookTitle, setBookTitle] = useState('');
@@ -12,6 +14,7 @@ const AddNewBook = () => {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const navigate = useNavigate();
 
   // Mock data - in real app, these would come from API
   const publishers = [
@@ -140,7 +143,16 @@ const AddNewBook = () => {
         </div>
       )}
 
-      <div className="relative bg-white backdrop-blur-2xl p-8 rounded-3xl shadow-2xl w-full max-w-4xl border border-gray-200 hover:shadow-3xl transition-all duration-500">
+      <div className="relative bg-white backdrop-blur-2xl p-8 pt-20 rounded-3xl shadow-2xl w-full max-w-4xl border border-gray-200 hover:shadow-3xl transition-all duration-500">
+        {/* Back to Store Button */}
+        <button
+          onClick={() => navigate('/manage_books')}
+          className="absolute top-4 left-4 inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-sm font-medium rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all duration-200 shadow-lg cursor-pointer"
+        >
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          Back to Store
+        </button>
+
         {/* Header */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mb-6 shadow-2xl relative overflow-hidden group">
@@ -169,7 +181,7 @@ const AddNewBook = () => {
                 value={bookTitle}
                 onChange={(e) => setBookTitle(e.target.value)}
                 required
-                className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-200 rounded-2xl shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-blue-400 transition-all duration-300 text-gray-800 placeholder-gray-400 backdrop-blur-sm hover:bg-gray-100 focus:bg-white"
+                className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-200 rounded-2xl shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-blue-400 transition-all duration-300 text-gray-800 placeholder-gray-400 backdrop-blur-sm hover:bg-gray-100 focus:bg-white cursor-text"
                 placeholder="Enter the book title"
               />
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/20 to-purple-500/20 opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
@@ -193,7 +205,7 @@ const AddNewBook = () => {
                   onChange={(e) => setBookPrice(e.target.value)}
                   required
                   min="0"
-                  className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-200 rounded-2xl shadow-lg focus:outline-none focus:ring-2 focus:ring-green-400/50 focus:border-green-400 transition-all duration-300 text-gray-800 placeholder-gray-400 backdrop-blur-sm hover:bg-gray-100 focus:bg-white"
+                  className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-200 rounded-2xl shadow-lg focus:outline-none focus:ring-2 focus:ring-green-400/50 focus:border-green-400 transition-all duration-300 text-gray-800 placeholder-gray-400 backdrop-blur-sm hover:bg-gray-100 focus:bg-white cursor-text"
                   placeholder="0.00"
                 />
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-green-500/20 to-emerald-500/20 opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
@@ -214,7 +226,7 @@ const AddNewBook = () => {
                   value={isbnNumber}
                   onChange={(e) => setIsbnNumber(e.target.value)}
                   required
-                  className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-200 rounded-2xl shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-400/50 focus:border-purple-400 transition-all duration-300 text-gray-800 placeholder-gray-400 backdrop-blur-sm hover:bg-gray-100 focus:bg-white"
+                  className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-200 rounded-2xl shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-400/50 focus:border-purple-400 transition-all duration-300 text-gray-800 placeholder-gray-400 backdrop-blur-sm hover:bg-gray-100 focus:bg-white cursor-text"
                   placeholder="978-0-123456-78-9"
                 />
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-500/20 to-pink-500/20 opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
@@ -272,7 +284,7 @@ const AddNewBook = () => {
                         <button
                           type="button"
                           onClick={removeBookCover}
-                          className="opacity-0 group-hover:opacity-100 bg-red-500 text-white p-2 rounded-full hover:bg-red-600 transition-all duration-300 transform scale-95 hover:scale-100"
+                          className="opacity-0 group-hover:opacity-100 bg-red-500 text-white p-2 rounded-full hover:bg-red-600 transition-all duration-300 transform scale-95 hover:scale-100 cursor-pointer"
                         >
                           <X className="w-4 h-4" />
                         </button>
@@ -321,7 +333,7 @@ const AddNewBook = () => {
                 value={selectedPublisher}
                 onChange={(e) => setSelectedPublisher(e.target.value)}
                 required
-                className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-200 rounded-2xl shadow-lg focus:outline-none focus:ring-2 focus:ring-teal-400/50 focus:border-teal-400 transition-all duration-300 text-gray-800 backdrop-blur-sm hover:bg-gray-100 focus:bg-white"
+                className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-200 rounded-2xl shadow-lg focus:outline-none focus:ring-2 focus:ring-teal-400/50 focus:border-teal-400 transition-all duration-300 text-gray-800 backdrop-blur-sm hover:bg-gray-100 focus:bg-white cursor-pointer"
               >
                 <option value="">Select a publisher</option>
                 {publishers.map(publisher => (
@@ -381,7 +393,7 @@ const AddNewBook = () => {
                     <button
                       type="button"
                       onClick={() => handleAuthorToggle(author)}
-                      className="ml-2 text-blue-600 hover:text-blue-800"
+                      className="ml-2 text-blue-600 hover:text-blue-800 cursor-pointer"
                     >
                       <X className="w-3 h-3" />
                     </button>
@@ -438,7 +450,7 @@ const AddNewBook = () => {
                     <button
                       type="button"
                       onClick={() => handleCategoryToggle(category)}
-                      className="ml-2 text-purple-600 hover:text-purple-800"
+                      className="ml-2 text-purple-600 hover:text-purple-800 cursor-pointer"
                     >
                       <X className="w-3 h-3" />
                     </button>
@@ -453,7 +465,7 @@ const AddNewBook = () => {
             type="button"
             onClick={handleSubmit}
             disabled={isLoading || !bookTitle || !bookPrice || !isbnNumber || !selectedPublisher || selectedAuthors.length === 0 || selectedCategories.length === 0}
-            className="w-full bg-gradient-to-r from-blue-600 via-purple-600 to-blue-700 text-white py-4 px-6 rounded-2xl font-semibold hover:from-blue-500 hover:via-purple-500 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:ring-offset-2 focus:ring-offset-transparent transition-all duration-300 shadow-2xl hover:shadow-blue-500/25 transform hover:-translate-y-1 active:translate-y-0 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none relative overflow-hidden group"
+            className="w-full bg-gradient-to-r from-blue-600 via-purple-600 to-blue-700 text-white py-4 px-6 rounded-2xl font-semibold hover:from-blue-500 hover:via-purple-500 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:ring-offset-2 focus:ring-offset-transparent transition-all duration-300 shadow-2xl hover:shadow-blue-500/25 transform hover:-translate-y-1 active:translate-y-0 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none relative overflow-hidden group cursor-pointer"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <span className="relative z-10 flex items-center justify-center">
