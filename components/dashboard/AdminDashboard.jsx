@@ -153,7 +153,7 @@ const AdminDashboard = () => {
         />
         <StatCard
           title="Revenue"
-          value={`₹${dashboardStats.totalRevenue.toLocaleString()}`}
+          value={`PKR ${dashboardStats.totalRevenue.toLocaleString()}`}
           icon={DollarSign}
           color="from-green-500 to-emerald-500"
           change={23}
